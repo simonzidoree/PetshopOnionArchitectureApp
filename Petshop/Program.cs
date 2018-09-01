@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Petshop
+namespace Petshop.ConsoleApp
 {
     class Program
     {
