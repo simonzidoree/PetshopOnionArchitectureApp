@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Petshop.Core.Entity\Petshop.Core.Entities.csproj" />
+    <ProjectReference Include="..\Petshop.Core\Petshop.Core.csproj" />
+  </ItemGroup>
+
 </Project>
