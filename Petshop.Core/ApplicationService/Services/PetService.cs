@@ -8,16 +8,17 @@ namespace Petshop.Core.ApplicationService.Services
 {
     public class PetService : IPetService
     {
-        readonly IPetRepository _petRepository;
+        private readonly IPetRepository _petRepository;
 
         public PetService(IPetRepository petRepository)
         {
             _petRepository = petRepository;
         }
 
-        public Pet NewPet(string name, string type, DateTime birthDate, DateTime soldDate, string color, string previousOwner, double price)
+        public Pet NewPet(string name, string type, DateTime birthDate, DateTime soldDate, string color,
+            string previousOwner, double price)
         {
-            var pet = new Pet()
+            var pet = new Pet
             {
                 Name = name,
                 Type = type,

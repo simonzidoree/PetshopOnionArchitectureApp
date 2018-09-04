@@ -1,6 +1,6 @@
-﻿using Petshop.Core.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Petshop.Core.Entities;
 
 namespace Petshop.Infrastructure.Data
 {
@@ -12,7 +12,7 @@ namespace Petshop.Infrastructure.Data
 
         public static void InitData()
         {
-            var pet1 = new Pet()
+            var pet1 = new Pet
             {
                 ID = PetID++,
                 Name = "Bob",
@@ -23,7 +23,7 @@ namespace Petshop.Infrastructure.Data
                 PreviousOwner = "John Doe",
                 Price = 749.99
             };
-            var pet2 = new Pet()
+            var pet2 = new Pet
             {
                 ID = PetID++,
                 Name = "Jens",
@@ -34,7 +34,7 @@ namespace Petshop.Infrastructure.Data
                 PreviousOwner = "Bo Emil",
                 Price = 199.99
             };
-            var pet3 = new Pet()
+            var pet3 = new Pet
             {
                 ID = PetID++,
                 Name = "Mikkel",
@@ -45,7 +45,7 @@ namespace Petshop.Infrastructure.Data
                 PreviousOwner = "Camilla Jensen",
                 Price = 1249.99
             };
-            var pet4 = new Pet()
+            var pet4 = new Pet
             {
                 ID = PetID++,
                 Name = "Per",
@@ -56,7 +56,7 @@ namespace Petshop.Infrastructure.Data
                 PreviousOwner = "Gert Nielsen",
                 Price = 329.99
             };
-            var pet5 = new Pet()
+            var pet5 = new Pet
             {
                 ID = PetID++,
                 Name = "Karla",
@@ -68,7 +68,7 @@ namespace Petshop.Infrastructure.Data
                 Price = 2500.00
             };
 
-            Pets = new List<Pet> { pet1, pet2, pet3, pet4, pet5 };
+            Pets = new List<Pet> {pet1, pet2, pet3, pet4, pet5};
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using Petshop.Core.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Petshop.Core.Entities;
 
 namespace Petshop.Core.DomainService
 {

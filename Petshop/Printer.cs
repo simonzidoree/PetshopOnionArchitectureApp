@@ -1,14 +1,16 @@
-﻿using Petshop.Core.ApplicationService;
-using Petshop.Core.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Petshop.Core.ApplicationService;
+using Petshop.Core.Entities;
 
 namespace Petshop.ConsoleApp
 {
     public class Printer : IPrinter
     {
         #region Service Area
-        readonly IPetService _petService;
+
+        private readonly IPetService _petService;
+
         #endregion
 
         #region Printer Constructor
@@ -24,7 +26,8 @@ namespace Petshop.ConsoleApp
 
         public void StartUI()
         {
-            string[] menuItems = {
+            string[] menuItems =
+            {
                 "Show list of all Pets",
                 "Search Pets by Type",
                 "Create a new Pet",
@@ -75,7 +78,7 @@ namespace Petshop.ConsoleApp
                         var newColor = AskQuestion($"Enter {newName}'s color: ");
                         var newPreviousOwner = AskQuestion($"Enter {newName}'s previous owner: ");
                         var newPrice = double.Parse(AskQuestion($"Enter the price of {newName}: "));
-                        _petService.UpdatePet(new Pet()
+                        _petService.UpdatePet(new Pet
                         {
                             ID = idForEdit,
                             Name = newName,
@@ -96,18 +99,18 @@ namespace Petshop.ConsoleApp
                     case 8:
                         ShowPetsSortedByLowestPrice();
                         break;
-                    default:
-                        break;
                 }
+
                 selection = ShowMenu(menuItems);
             }
+
             Console.WriteLine("Exiting...");
             Console.ReadLine();
         }
 
         private void ShowPetsSortedByLowestPrice()
         {
-            int i = 0;
+            var i = 0;
             var list = _petService.GetSortedByLowestPricePets();
 
             Console.WriteLine("\nList of Pets sorted by Lowest price");
@@ -115,13 +118,15 @@ namespace Petshop.ConsoleApp
 
             foreach (var pet in list)
             {
-                Console.WriteLine($"{(i + 1)}: | ID: {pet.ID}\nName: {pet.Name}\nType: {pet.Type}\nBirthdate: {pet.Birthdate}\nSoldDate: {pet.SoldDate}\nColor: {pet.Color}\nPreviousOwner: {pet.PreviousOwner}\nPrice: {pet.Price}\n", i++);
+                Console.WriteLine(
+                    $"{i + 1}: | ID: {pet.ID}\nName: {pet.Name}\nType: {pet.Type}\nBirthdate: {pet.Birthdate}\nSoldDate: {pet.SoldDate}\nColor: {pet.Color}\nPreviousOwner: {pet.PreviousOwner}\nPrice: {pet.Price}\n",
+                    i++);
             }
         }
 
         private void ShowPetsSortedByHighestPrice()
         {
-            int i = 0;
+            var i = 0;
             var list = _petService.GetSortedByHighestPricePets();
 
             Console.WriteLine("\nList of Pets sorted by Highest price");
@@ -129,11 +134,13 @@ namespace Petshop.ConsoleApp
 
             foreach (var pet in list)
             {
-                Console.WriteLine($"{(i + 1)}: | ID: {pet.ID}\nName: {pet.Name}\nType: {pet.Type}\nBirthdate: {pet.Birthdate}\nSoldDate: {pet.SoldDate}\nColor: {pet.Color}\nPreviousOwner: {pet.PreviousOwner}\nPrice: {pet.Price}\n", i++);
+                Console.WriteLine(
+                    $"{i + 1}: | ID: {pet.ID}\nName: {pet.Name}\nType: {pet.Type}\nBirthdate: {pet.Birthdate}\nSoldDate: {pet.SoldDate}\nColor: {pet.Color}\nPreviousOwner: {pet.PreviousOwner}\nPrice: {pet.Price}\n",
+                    i++);
             }
         }
 
-        int PrintFindPetByID()
+        private int PrintFindPetByID()
         {
             int id;
             Console.Write("\nEnter Pet ID: ");
@@ -141,38 +148,42 @@ namespace Petshop.ConsoleApp
             {
                 Console.Write("Please enter a number: ");
             }
+
             return id;
         }
 
-        string AskQuestion(string question)
+        private string AskQuestion(string question)
         {
             Console.Write(question);
             return Console.ReadLine();
         }
 
-        void ListAllPets(List<Pet> pets)
+        private void ListAllPets(List<Pet> pets)
         {
-            int i = 0;
+            var i = 0;
             Console.WriteLine("\nList of all Pets");
             Console.WriteLine("----------------");
 
             foreach (var pet in pets)
             {
-                Console.WriteLine($"{(i + 1)}: | ID: {pet.ID}\nName: {pet.Name}\nType: {pet.Type}\nBirthdate: {pet.Birthdate}\nSoldDate: {pet.SoldDate}\nColor: {pet.Color}\nPreviousOwner: {pet.PreviousOwner}\nPrice: {pet.Price}\n", i++);
+                Console.WriteLine(
+                    $"{i + 1}: | ID: {pet.ID}\nName: {pet.Name}\nType: {pet.Type}\nBirthdate: {pet.Birthdate}\nSoldDate: {pet.SoldDate}\nColor: {pet.Color}\nPreviousOwner: {pet.PreviousOwner}\nPrice: {pet.Price}\n",
+                    i++);
             }
+
             Console.WriteLine();
         }
 
-        int ShowMenu(string[] menuItems)
+        private int ShowMenu(string[] menuItems)
         {
             int selection;
 
             Console.WriteLine("Choose an option:");
             Console.WriteLine("---------------------------");
 
-            for (int i = 0; i < menuItems.Length; i++)
+            for (var i = 0; i < menuItems.Length; i++)
             {
-                Console.WriteLine($"{(i + 1)}: | {menuItems[i]}");
+                Console.WriteLine($"{i + 1}: | {menuItems[i]}");
             }
 
             while (!int.TryParse(Console.ReadLine(), out selection) || selection < 1 || selection > 9)
@@ -183,9 +194,9 @@ namespace Petshop.ConsoleApp
             return selection;
         }
 
-        void FiveCheapestAvailablePets()
+        private void FiveCheapestAvailablePets()
         {
-            int i = 0;
+            var i = 0;
             var list = _petService.GetFiveCheapestPets();
 
             Console.WriteLine("\nList of 5 cheapest Pets");
@@ -193,13 +204,15 @@ namespace Petshop.ConsoleApp
 
             foreach (var pet in list)
             {
-                Console.WriteLine($"{(i + 1)}: | ID: {pet.ID}\nName: {pet.Name}\nType: {pet.Type}\nBirthdate: {pet.Birthdate}\nSoldDate: {pet.SoldDate}\nColor: {pet.Color}\nPreviousOwner: {pet.PreviousOwner}\nPrice: {pet.Price}\n", i++);
+                Console.WriteLine(
+                    $"{i + 1}: | ID: {pet.ID}\nName: {pet.Name}\nType: {pet.Type}\nBirthdate: {pet.Birthdate}\nSoldDate: {pet.SoldDate}\nColor: {pet.Color}\nPreviousOwner: {pet.PreviousOwner}\nPrice: {pet.Price}\n",
+                    i++);
             }
         }
 
-        void SearchPetsByType()
+        private void SearchPetsByType()
         {
-            int i = 0;
+            var i = 0;
             var petType = AskQuestion("Enter the type you are searching for: ");
             var list = _petService.GetAllByType(petType);
 
@@ -208,7 +221,9 @@ namespace Petshop.ConsoleApp
 
             foreach (var pet in list)
             {
-                Console.WriteLine($"{(i + 1)}: | ID: {pet.ID}\nName: {pet.Name}\nType: {pet.Type}\nBirthdate: {pet.Birthdate}\nSoldDate: {pet.SoldDate}\nColor: {pet.Color}\nPreviousOwner: {pet.PreviousOwner}\nPrice: {pet.Price}\n", i++);
+                Console.WriteLine(
+                    $"{i + 1}: | ID: {pet.ID}\nName: {pet.Name}\nType: {pet.Type}\nBirthdate: {pet.Birthdate}\nSoldDate: {pet.SoldDate}\nColor: {pet.Color}\nPreviousOwner: {pet.PreviousOwner}\nPrice: {pet.Price}\n",
+                    i++);
             }
         }
 

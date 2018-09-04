@@ -1,7 +1,7 @@
-﻿using Petshop.Core.DomainService;
-using Petshop.Core.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Petshop.Core.DomainService;
+using Petshop.Core.Entities;
 
 namespace Petshop.Infrastructure.Data.Repositories
 {
@@ -30,12 +30,13 @@ namespace Petshop.Infrastructure.Data.Repositories
                     return pet;
                 }
             }
+
             return null;
         }
 
         public Pet Update(Pet petUpdate)
         {
-            var petFromDB = this.ReadByID(petUpdate.ID);
+            var petFromDB = ReadByID(petUpdate.ID);
             if (petFromDB != null)
             {
                 petFromDB.Name = petUpdate.Name;
@@ -47,13 +48,14 @@ namespace Petshop.Infrastructure.Data.Repositories
                 petFromDB.Price = petUpdate.Price;
                 return petFromDB;
             }
+
             return null;
         }
 
         public Pet Delete(int id)
         {
             var pets = FakeDB.Pets.ToList();
-            var petFoundId = this.ReadByID(id);
+            var petFoundId = ReadByID(id);
 
             if (petFoundId != null)
             {
@@ -61,6 +63,7 @@ namespace Petshop.Infrastructure.Data.Repositories
                 FakeDB.Pets = pets;
                 return petFoundId;
             }
+
             return null;
         }
     }

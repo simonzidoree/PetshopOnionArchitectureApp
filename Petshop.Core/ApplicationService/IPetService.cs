@@ -1,6 +1,6 @@
-﻿using Petshop.Core.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Petshop.Core.Entities;
 
 namespace Petshop.Core.ApplicationService
 {
@@ -8,12 +8,12 @@ namespace Petshop.Core.ApplicationService
     {
         //New Pet
         Pet NewPet(string name,
-                        string type,
-                        DateTime birthDate,
-                        DateTime soldDate,
-                        string color,
-                        string previousOwner,
-                        double price);
+            string type,
+            DateTime birthDate,
+            DateTime soldDate,
+            string color,
+            string previousOwner,
+            double price);
 
         //Create
         Pet CreatePet(Pet pet);

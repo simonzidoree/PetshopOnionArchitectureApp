@@ -7,10 +7,11 @@ using Petshop.Infrastructure.Data.Repositories;
 
 namespace Petshop.ConsoleApp
 {
-    class Program
+    internal class Program
     {
         #region Main
-        static void Main(string[] args)
+
+        private static void Main(string[] args)
         {
             FakeDB.InitData();
 
@@ -23,6 +24,7 @@ namespace Petshop.ConsoleApp
             var printer = serviceProvider.GetRequiredService<IPrinter>();
             printer.StartUI();
         }
+
         #endregion
     }
 }
