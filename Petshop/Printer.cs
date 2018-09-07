@@ -78,7 +78,7 @@ namespace Petshop.ConsoleApp
                         var newColor = AskQuestion($"Enter {newName}'s color: ");
                         var newPreviousOwner = AskQuestion($"Enter {newName}'s previous owner: ");
                         var newPrice = double.Parse(AskQuestion($"Enter the price of {newName}: "));
-                        _petService.UpdatePet(new Pet
+                        _petService.UpdatePet(idForEdit, new Pet
                         {
                             ID = idForEdit,
                             Name = newName,

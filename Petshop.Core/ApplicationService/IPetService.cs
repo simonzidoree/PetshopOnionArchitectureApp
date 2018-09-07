@@ -32,7 +32,7 @@ namespace Petshop.Core.ApplicationService
         List<Pet> GetAllByType(string petType);
 
         //Update
-        Pet UpdatePet(Pet petUpdate);
+        Pet UpdatePet(int id, Pet petUpdate);
 
         //Delete
         Pet DeletePet(int id);

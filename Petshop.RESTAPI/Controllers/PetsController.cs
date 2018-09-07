@@ -16,36 +16,39 @@ namespace Petshop.RESTAPI.Controllers
             _petService = petService;
         }
 
-        // GET api/values
+        // GET api/pets
         [HttpGet]
         public ActionResult<IEnumerable<Pet>> Get()
         {
             return _petService.GetAllPets();
         }
 
-        // GET api/values/5
+        // GET api/pets/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<Pet> Get(int id)
         {
-            return "value";
+            return _petService.FindPetById(id);
         }
 
         // POST api/pets
         [HttpPost]
-        public void Post([FromBody] Pet pet)
+        public Pet Post([FromBody] Pet pet)
         {
+            return _petService.CreatePet(pet);
         }
 
-        // PUT api/values/5
+        // PUT api/pets/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Pet pet)
         {
+            _petService.UpdatePet(id, pet);
         }
 
-        // DELETE api/values/5
+        // DELETE api/pets/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            _petService.DeletePet(id);
         }
     }
 }

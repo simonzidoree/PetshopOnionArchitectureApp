@@ -47,9 +47,9 @@ namespace Petshop.Core.ApplicationService.Services
             return _petRepository.ReadAllPets().ToList();
         }
 
-        public Pet UpdatePet(Pet petUpdate)
+        public Pet UpdatePet(int id, Pet petUpdate)
         {
-            var pet = FindPetById(petUpdate.ID);
+            var pet = FindPetById(id);
             pet.Name = petUpdate.Name;
             pet.Type = petUpdate.Type;
             pet.Birthdate = petUpdate.Birthdate;
