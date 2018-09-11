@@ -7,8 +7,10 @@ namespace Petshop.Infrastructure.Data
     public static class FakeDB
     {
         public static int PetID = 1;
+        public static int OwnerID = 1;
 
         public static IEnumerable<Pet> Pets;
+        public static IEnumerable<Owner> Owners;
 
         public static void InitData()
         {
@@ -69,6 +71,19 @@ namespace Petshop.Infrastructure.Data
             };
 
             Pets = new List<Pet> {pet1, pet2, pet3, pet4, pet5};
+
+            var owner1 = new Owner
+            {
+                ID = OwnerID++,
+                Name = "Bob"
+            };
+            var owner2 = new Owner
+            {
+                ID = OwnerID++,
+                Name = "Jens"
+            };
+
+            Owners = new List<Owner> {owner1, owner2};
         }
     }
 }

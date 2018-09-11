@@ -117,11 +117,9 @@ namespace Petshop.ConsoleApp
             Console.WriteLine("----------------");
 
             foreach (var pet in list)
-            {
                 Console.WriteLine(
                     $"{i + 1}: | ID: {pet.ID}\nName: {pet.Name}\nType: {pet.Type}\nBirthdate: {pet.Birthdate}\nSoldDate: {pet.SoldDate}\nColor: {pet.Color}\nPreviousOwner: {pet.PreviousOwner}\nPrice: {pet.Price}\n",
                     i++);
-            }
         }
 
         private void ShowPetsSortedByHighestPrice()
@@ -133,21 +131,16 @@ namespace Petshop.ConsoleApp
             Console.WriteLine("----------------");
 
             foreach (var pet in list)
-            {
                 Console.WriteLine(
                     $"{i + 1}: | ID: {pet.ID}\nName: {pet.Name}\nType: {pet.Type}\nBirthdate: {pet.Birthdate}\nSoldDate: {pet.SoldDate}\nColor: {pet.Color}\nPreviousOwner: {pet.PreviousOwner}\nPrice: {pet.Price}\n",
                     i++);
-            }
         }
 
         private int PrintFindPetByID()
         {
             int id;
             Console.Write("\nEnter Pet ID: ");
-            while (!int.TryParse(Console.ReadLine(), out id))
-            {
-                Console.Write("Please enter a number: ");
-            }
+            while (!int.TryParse(Console.ReadLine(), out id)) Console.Write("Please enter a number: ");
 
             return id;
         }
@@ -165,11 +158,9 @@ namespace Petshop.ConsoleApp
             Console.WriteLine("----------------");
 
             foreach (var pet in pets)
-            {
                 Console.WriteLine(
                     $"{i + 1}: | ID: {pet.ID}\nName: {pet.Name}\nType: {pet.Type}\nBirthdate: {pet.Birthdate}\nSoldDate: {pet.SoldDate}\nColor: {pet.Color}\nPreviousOwner: {pet.PreviousOwner}\nPrice: {pet.Price}\n",
                     i++);
-            }
 
             Console.WriteLine();
         }
@@ -181,15 +172,10 @@ namespace Petshop.ConsoleApp
             Console.WriteLine("Choose an option:");
             Console.WriteLine("---------------------------");
 
-            for (var i = 0; i < menuItems.Length; i++)
-            {
-                Console.WriteLine($"{i + 1}: | {menuItems[i]}");
-            }
+            for (var i = 0; i < menuItems.Length; i++) Console.WriteLine($"{i + 1}: | {menuItems[i]}");
 
             while (!int.TryParse(Console.ReadLine(), out selection) || selection < 1 || selection > 9)
-            {
                 Console.WriteLine("\nPlease select a number between 1-9:");
-            }
 
             return selection;
         }
@@ -203,11 +189,9 @@ namespace Petshop.ConsoleApp
             Console.WriteLine("----------------");
 
             foreach (var pet in list)
-            {
                 Console.WriteLine(
                     $"{i + 1}: | ID: {pet.ID}\nName: {pet.Name}\nType: {pet.Type}\nBirthdate: {pet.Birthdate}\nSoldDate: {pet.SoldDate}\nColor: {pet.Color}\nPreviousOwner: {pet.PreviousOwner}\nPrice: {pet.Price}\n",
                     i++);
-            }
         }
 
         private void SearchPetsByType()
@@ -220,11 +204,9 @@ namespace Petshop.ConsoleApp
             Console.WriteLine("-------------------------------------------------------");
 
             foreach (var pet in list)
-            {
                 Console.WriteLine(
                     $"{i + 1}: | ID: {pet.ID}\nName: {pet.Name}\nType: {pet.Type}\nBirthdate: {pet.Birthdate}\nSoldDate: {pet.SoldDate}\nColor: {pet.Color}\nPreviousOwner: {pet.PreviousOwner}\nPrice: {pet.Price}\n",
                     i++);
-            }
         }
 
         #endregion

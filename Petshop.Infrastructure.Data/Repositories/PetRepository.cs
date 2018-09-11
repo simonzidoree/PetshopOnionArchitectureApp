@@ -24,12 +24,8 @@ namespace Petshop.Infrastructure.Data.Repositories
         public Pet ReadByID(int id)
         {
             foreach (var pet in FakeDB.Pets.ToList())
-            {
                 if (pet.ID == id)
-                {
                     return pet;
-                }
-            }
 
             return null;
         }

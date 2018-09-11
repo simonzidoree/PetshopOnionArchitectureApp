@@ -20,7 +20,7 @@ namespace Petshop.RESTAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Pet>> Get()
         {
-            return _petService.GetAllPets();
+            return Ok(_petService.GetAllPets());
         }
 
         // GET api/pets/5
@@ -29,38 +29,33 @@ namespace Petshop.RESTAPI.Controllers
         {
             var pet = _petService.FindPetById(id);
 
-            if (pet == null)
-            {
-                return BadRequest($"There is no Pet with the ID: {id}");
-            }
+            if (pet == null) return BadRequest($"There is no Pet with the ID: {id}");
 
-            return pet;
+            return Ok(pet);
         }
 
         // POST api/pets
         [HttpPost]
         public ActionResult<Pet> Post([FromBody] Pet pet)
         {
-            if (pet.Name == null || pet.Type == null)
-            {
-                return BadRequest("You fucked up");
-            }
+            if (pet.Name == null || pet.Type == null) return BadRequest("The Pet has to have a Name and Type!");
 
-            return _petService.CreatePet(pet);
+            return Ok(_petService.CreatePet(pet));
         }
 
         // PUT api/pets/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Pet pet)
+        public ActionResult<Pet> Put(int id, [FromBody] Pet pet)
         {
-            _petService.UpdatePet(id, pet);
+            if (id < 1 || id != pet.ID) return BadRequest("Parameter Id and pet ID must be the same");
+            return Ok(_petService.UpdatePet(id, pet));
         }
 
         // DELETE api/pets/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult<Pet> Delete(int id)
         {
-            _petService.DeletePet(id);
+            return Ok(_petService.DeletePet(id));
         }
     }
 }
