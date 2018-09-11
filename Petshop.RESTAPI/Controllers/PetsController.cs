@@ -27,13 +27,25 @@ namespace Petshop.RESTAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<Pet> Get(int id)
         {
-            return _petService.FindPetById(id);
+            var pet = _petService.FindPetById(id);
+
+            if (pet == null)
+            {
+                return BadRequest($"There is no Pet with the ID: {id}");
+            }
+
+            return pet;
         }
 
         // POST api/pets
         [HttpPost]
-        public Pet Post([FromBody] Pet pet)
+        public ActionResult<Pet> Post([FromBody] Pet pet)
         {
+            if (pet.Name == null || pet.Type == null)
+            {
+                return BadRequest("You fucked up");
+            }
+
             return _petService.CreatePet(pet);
         }
 
