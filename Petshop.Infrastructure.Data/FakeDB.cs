@@ -23,7 +23,8 @@ namespace Petshop.Infrastructure.Data
                 SoldDate = new DateTime(2017, 10, 10),
                 Color = "White",
                 PreviousOwner = "John Doe",
-                Price = 749.99
+                Price = 749.99,
+                Owner = new Owner {ID = 1}
             };
             var pet2 = new Pet
             {
@@ -34,7 +35,8 @@ namespace Petshop.Infrastructure.Data
                 SoldDate = new DateTime(2015, 12, 20),
                 Color = "Orange",
                 PreviousOwner = "Bo Emil",
-                Price = 199.99
+                Price = 199.99,
+                Owner = new Owner {ID = 1}
             };
             var pet3 = new Pet
             {
@@ -45,7 +47,8 @@ namespace Petshop.Infrastructure.Data
                 SoldDate = new DateTime(2018, 01, 05),
                 Color = "Brown",
                 PreviousOwner = "Camilla Jensen",
-                Price = 1249.99
+                Price = 1249.99,
+                Owner = new Owner {ID = 1}
             };
             var pet4 = new Pet
             {
@@ -56,7 +59,8 @@ namespace Petshop.Infrastructure.Data
                 SoldDate = new DateTime(2016, 09, 25),
                 Color = "White",
                 PreviousOwner = "Gert Nielsen",
-                Price = 329.99
+                Price = 329.99,
+                Owner = new Owner {ID = 2}
             };
             var pet5 = new Pet
             {
@@ -67,7 +71,8 @@ namespace Petshop.Infrastructure.Data
                 SoldDate = new DateTime(2013, 08, 11),
                 Color = "White",
                 PreviousOwner = "Amanda Madsen",
-                Price = 2500.00
+                Price = 2500.00,
+                Owner = new Owner {ID = 2}
             };
 
             Pets = new List<Pet> {pet1, pet2, pet3, pet4, pet5};
@@ -75,12 +80,12 @@ namespace Petshop.Infrastructure.Data
             var owner1 = new Owner
             {
                 ID = OwnerID++,
-                Name = "Bob"
+                Name = "Bob Wild"
             };
             var owner2 = new Owner
             {
                 ID = OwnerID++,
-                Name = "Jens"
+                Name = "Jens Madsen"
             };
 
             Owners = new List<Owner> {owner1, owner2};

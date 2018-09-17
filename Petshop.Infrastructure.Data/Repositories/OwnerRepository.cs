@@ -18,11 +18,13 @@ namespace Petshop.Infrastructure.Data.Repositories
 
         public Owner ReadByID(int id)
         {
-            foreach (var owner in FakeDB.Owners.ToList())
-                if (owner.ID == id)
-                    return owner;
-
-            return null;
+            return FakeDB.Owners
+                .Select(o => new Owner
+                {
+                    ID = o.ID,
+                    Name = o.Name
+                })
+                .FirstOrDefault(o => o.ID == id);
         }
 
         public IEnumerable<Owner> ReadAllOwners()

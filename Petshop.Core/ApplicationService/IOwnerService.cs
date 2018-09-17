@@ -14,6 +14,8 @@ namespace Petshop.Core.ApplicationService
         //Read
         Owner FindOwnerById(int id);
 
+        Owner FindOwnerByIdIncludePets(int id);
+
         List<Owner> GetAllOwners();
 
         //Update

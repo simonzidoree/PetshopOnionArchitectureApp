@@ -27,7 +27,7 @@ namespace Petshop.RESTAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<Owner> Get(int id)
         {
-            var owner = _ownerService.FindOwnerById(id);
+            var owner = _ownerService.FindOwnerByIdIncludePets(id);
 
             if (owner == null) return BadRequest($"There is no Owner with the ID: {id}");
 
