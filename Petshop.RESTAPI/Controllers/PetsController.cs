@@ -29,7 +29,10 @@ namespace Petshop.RESTAPI.Controllers
         {
             var pet = _petService.FindPetById(id);
 
-            if (pet == null) return BadRequest($"There is no Pet with the ID: {id}");
+            if (pet == null)
+            {
+                return BadRequest($"There is no Pet with the ID: {id}");
+            }
 
             return Ok(pet);
         }
@@ -38,7 +41,10 @@ namespace Petshop.RESTAPI.Controllers
         [HttpPost]
         public ActionResult<Pet> Post([FromBody] Pet pet)
         {
-            if (pet.Name == null || pet.Type == null) return BadRequest("The Pet has to have a Name and Type!");
+            if (pet.Name == null || pet.Type == null)
+            {
+                return BadRequest("The Pet has to have a Name and Type!");
+            }
 
             return Ok(_petService.CreatePet(pet));
         }
@@ -47,7 +53,11 @@ namespace Petshop.RESTAPI.Controllers
         [HttpPut("{id}")]
         public ActionResult<Pet> Put(int id, [FromBody] Pet pet)
         {
-            if (id < 1 || id != pet.ID) return BadRequest("Parameter Id and pet ID must be the same");
+            if (id < 1 || id != pet.ID)
+            {
+                return BadRequest("Parameter Id and pet ID must be the same");
+            }
+
             return Ok(_petService.UpdatePet(id, pet));
         }
 

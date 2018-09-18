@@ -29,7 +29,10 @@ namespace Petshop.RESTAPI.Controllers
         {
             var owner = _ownerService.FindOwnerByIdIncludePets(id);
 
-            if (owner == null) return BadRequest($"There is no Owner with the ID: {id}");
+            if (owner == null)
+            {
+                return BadRequest($"There is no Owner with the ID: {id}");
+            }
 
             return Ok(owner);
         }
@@ -38,7 +41,10 @@ namespace Petshop.RESTAPI.Controllers
         [HttpPost]
         public ActionResult<Owner> Post([FromBody] Owner owner)
         {
-            if (owner.Name == null) return BadRequest("The Owner has to have a Name!");
+            if (owner.Name == null)
+            {
+                return BadRequest("The Owner has to have a Name!");
+            }
 
             return Ok(_ownerService.CreateOwner(owner));
         }
@@ -47,7 +53,10 @@ namespace Petshop.RESTAPI.Controllers
         [HttpPut("{id}")]
         public ActionResult<Owner> Put(int id, [FromBody] Owner owner)
         {
-            if (id < 1 || id != owner.ID) return BadRequest("Parameter Id and owner ID must be the same");
+            if (id < 1 || id != owner.ID)
+            {
+                return BadRequest("Parameter Id and owner ID must be the same");
+            }
 
             return Ok(_ownerService.UpdateOwner(id, owner));
         }
