@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Petshop.Core.DomainService;
@@ -25,6 +26,11 @@ namespace Petshop.Infrastructure.Data.Repositories
                     Name = o.Name
                 })
                 .FirstOrDefault(o => o.ID == id);
+        }
+
+        public Owner ReadByIDIncludePets(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public IEnumerable<Owner> ReadAllOwners()

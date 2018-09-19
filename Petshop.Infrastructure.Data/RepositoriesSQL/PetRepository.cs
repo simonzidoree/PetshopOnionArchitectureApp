@@ -26,7 +26,7 @@ namespace Petshop.Infrastructure.Data.RepositoriesSQL
 
         public IEnumerable<Pet> ReadAllPets()
         {
-            throw new NotImplementedException();
+            return _ctx.Pets;
         }
 
         public Pet Update(Pet petUpdate)

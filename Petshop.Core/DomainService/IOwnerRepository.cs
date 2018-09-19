@@ -10,6 +10,7 @@ namespace Petshop.Core.DomainService
 
         //Read Data
         Owner ReadByID(int id);
+        Owner ReadByIDIncludePets(int id);
         IEnumerable<Owner> ReadAllOwners();
 
         //Update Data
