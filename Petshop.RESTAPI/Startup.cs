@@ -42,7 +42,7 @@ namespace Petshop.RESTAPI
             else if (_env.IsProduction())
             {
                 services.AddDbContext<PetshopContext>(opt =>
-                    opt.UseSqlServer(_cfg.GetConnectionString("DefaultConnection")));
+                    opt.UseSqlServer(_cfg.GetConnectionString("MS_TableConnectionString")));
             }
 
             services.AddScoped<IPetRepository, PetRepository>();
@@ -60,8 +60,8 @@ namespace Petshop.RESTAPI
 
             services.AddCors(opt =>
             {
-                opt.AddPolicy("AllowSpecificOrigin",
-                    builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader()
+                opt.AddPolicy("AllowAnyOrigin",
+                    builder => builder.AllowAnyOrigin().AllowAnyHeader()
                         .AllowAnyMethod());
             });
         }
@@ -89,9 +89,9 @@ namespace Petshop.RESTAPI
                 app.UseHsts();
             }
 
-            app.UseCors("AllowSpecificOrigin");
+            app.UseCors("AllowAnyOrigin");
 
-            // app.UseHttpsRedirection()
+            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }
