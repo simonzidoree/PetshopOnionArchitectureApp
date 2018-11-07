@@ -15,25 +15,41 @@ namespace Petshop.RESTAPI
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IHostingEnvironment env)
         {
-            FakeDB.InitData();
-
-            Configuration = configuration;
+            _env = env;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", false, true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
+                .AddEnvironmentVariables();
+            _cfg = builder.Build();
         }
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration _cfg { get; }
+
+        private IHostingEnvironment _env { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-//            services.AddDbContext<PetshopContext>(
-//                opt => opt.UseInMemoryDatabase("PetshopMemoryDB")
-//                );
+            if (_env.IsDevelopment())
+            {
+                services.AddDbContext<PetshopContext>(
+                    opt => opt.UseSqlite("Data Source=petshopApp.db")
+                );
+            }
+            else if (_env.IsProduction())
+            {
+                services.AddDbContext<PetshopContext>(opt =>
+                    opt.UseSqlServer(_cfg.GetConnectionString("DefaultConnection")));
+            }
 
-            services.AddDbContext<PetshopContext>(
-                opt => opt.UseSqlite("Data Source=petshopApp.db")
-            );
+            services.AddScoped<IPetRepository, PetRepository>();
+            services.AddScoped<IPetService, PetService>();
+
+            services.AddScoped<IOwnerRepository, OwnerRepository>();
+            services.AddScoped<IOwnerService, OwnerService>();
 
             services.AddMvc().AddJsonOptions(options =>
             {
@@ -42,11 +58,12 @@ namespace Petshop.RESTAPI
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddScoped<IPetRepository, PetRepository>();
-            services.AddScoped<IPetService, PetService>();
-
-            services.AddScoped<IOwnerRepository, OwnerRepository>();
-            services.AddScoped<IOwnerService, OwnerService>();
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("AllowSpecificOrigin",
+                    builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader()
+                        .AllowAnyMethod());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,10 +80,18 @@ namespace Petshop.RESTAPI
             }
             else
             {
+                using (var scope = app.ApplicationServices.CreateScope())
+                {
+                    var ctx = scope.ServiceProvider.GetService<PetshopContext>();
+                    ctx.Database.EnsureCreated();
+                }
+
                 app.UseHsts();
             }
 
-//            app.UseHttpsRedirection();
+            app.UseCors("AllowSpecificOrigin");
+
+            // app.UseHttpsRedirection()
             app.UseMvc();
         }
     }
