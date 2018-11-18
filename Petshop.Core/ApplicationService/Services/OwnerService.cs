@@ -51,7 +51,7 @@ namespace Petshop.Core.ApplicationService.Services
         {
             var owner = FindOwnerById(id);
             owner.Name = ownerUpdate.Name;
-            return owner;
+            return _ownerRepository.Update(owner);
         }
 
         public Owner DeleteOwner(int id)

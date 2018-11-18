@@ -60,9 +60,12 @@ namespace Petshop.RESTAPI
 
             services.AddCors(opt =>
             {
-                opt.AddPolicy("AllowAnyOrigin",
-                    builder => builder.AllowAnyOrigin().AllowAnyHeader()
-                        .AllowAnyMethod());
+                opt.AddPolicy("AllowSpecificOrigins",
+                    builder => builder
+                        .WithOrigins("http://localhost:5000").AllowAnyHeader().AllowAnyMethod()
+                        .WithOrigins("https://petshopaof.firebaseapp.com").AllowAnyHeader().AllowAnyMethod()
+                        .WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod()
+                );
             });
         }
 
@@ -89,7 +92,7 @@ namespace Petshop.RESTAPI
                 app.UseHsts();
             }
 
-            app.UseCors("AllowAnyOrigin");
+            app.UseCors("AllowSpecificOrigins");
 
             app.UseHttpsRedirection();
             app.UseMvc();

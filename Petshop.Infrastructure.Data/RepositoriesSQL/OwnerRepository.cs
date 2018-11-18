@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -42,7 +41,10 @@ namespace Petshop.Infrastructure.Data.RepositoriesSQL
 
         public Owner Update(Owner ownerUpdate)
         {
-            throw new NotImplementedException();
+            _ctx.Attach(ownerUpdate).State = EntityState.Modified;
+            _ctx.SaveChanges();
+
+            return ownerUpdate;
         }
 
         public Owner Delete(int id)
