@@ -8,4 +8,14 @@
     <ProjectReference Include="..\Petshop.Core.Entity\Petshop.Core.Entities.csproj" />
   </ItemGroup>
 
+    <ItemGroup>
+        <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.3.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+            <HintPath>..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\system.identitymodel.tokens.jwt\5.2.0\lib\netstandard1.4\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
 </Project>
