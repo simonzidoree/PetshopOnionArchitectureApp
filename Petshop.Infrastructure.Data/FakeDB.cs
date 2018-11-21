@@ -80,12 +80,14 @@ namespace Petshop.Infrastructure.Data
             var owner1 = new Owner
             {
                 ID = OwnerID++,
-                Name = "Bob Wild"
+                FirstName = "Bob",
+                LastName = "Wild"
             };
             var owner2 = new Owner
             {
                 ID = OwnerID++,
-                Name = "Jens Madsen"
+                FirstName = "Jens",
+                LastName = "Madsen"
             };
 
             Owners = new List<Owner> {owner1, owner2};

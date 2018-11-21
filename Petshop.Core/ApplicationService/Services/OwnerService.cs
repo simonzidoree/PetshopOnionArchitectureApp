@@ -16,11 +16,12 @@ namespace Petshop.Core.ApplicationService.Services
             _petRepository = petRepository;
         }
 
-        public Owner NewOwner(string name)
+        public Owner NewOwner(string firstName, string lastName)
         {
             var owner = new Owner
             {
-                Name = name
+                FirstName = firstName,
+                LastName = lastName
             };
 
             return owner;
@@ -50,7 +51,8 @@ namespace Petshop.Core.ApplicationService.Services
         public Owner UpdateOwner(int id, Owner ownerUpdate)
         {
             var owner = FindOwnerById(id);
-            owner.Name = ownerUpdate.Name;
+            owner.FirstName = ownerUpdate.FirstName;
+            owner.LastName = ownerUpdate.LastName;
             return _ownerRepository.Update(owner);
         }
 

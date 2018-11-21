@@ -23,7 +23,8 @@ namespace Petshop.Infrastructure.Data.Repositories
                 .Select(o => new Owner
                 {
                     ID = o.ID,
-                    Name = o.Name
+                    FirstName = o.FirstName,
+                    LastName = o.LastName
                 })
                 .FirstOrDefault(o => o.ID == id);
         }
@@ -43,7 +44,8 @@ namespace Petshop.Infrastructure.Data.Repositories
             var ownerFromDB = ReadByID(ownerUpdate.ID);
             if (ownerFromDB != null)
             {
-                ownerFromDB.Name = ownerUpdate.Name;
+                ownerFromDB.FirstName = ownerUpdate.FirstName;
+                ownerFromDB.LastName = ownerUpdate.LastName;
                 return ownerFromDB;
             }
 

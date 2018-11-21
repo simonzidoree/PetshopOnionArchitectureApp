@@ -41,9 +41,9 @@ namespace Petshop.RESTAPI.Controllers
         [HttpPost]
         public ActionResult<Owner> Post([FromBody] Owner owner)
         {
-            if (owner.Name == null)
+            if (owner.FirstName == null || owner.LastName == null)
             {
-                return BadRequest("The Owner has to have a Name!");
+                return BadRequest("The Owner has to have a FirstName and LastName!");
             }
 
             return Ok(_ownerService.CreateOwner(owner));

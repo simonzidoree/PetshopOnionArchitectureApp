@@ -11,12 +11,14 @@ namespace Petshop.Infrastructure.Data
             ctx.Database.EnsureCreated();
             var owner1 = ctx.Owners.Add(new Owner
             {
-                Name = "Jens Madsen"
+                FirstName = "Jens",
+                LastName = "Madsen"
             }).Entity;
 
             var owner2 = ctx.Owners.Add(new Owner
             {
-                Name = "Bob Wild"
+                FirstName = "Bob",
+                LastName = "Wild"
             }).Entity;
 
             ctx.Pets.Add(new Pet
