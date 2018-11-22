@@ -6,5 +6,7 @@ namespace Petshop.Core.DomainService
     public interface IUserRepository
     {
         IEnumerable<User> GetAll();
+
+        User Create(User t);
     }
 }

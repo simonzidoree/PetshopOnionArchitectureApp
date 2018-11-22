@@ -17,5 +17,12 @@ namespace Petshop.Infrastructure.Data.RepositoriesSQL
         {
             return _ctx.Users;
         }
+
+        public User Create(User t)
+        {
+            var user = _ctx.Users.Add(t).Entity;
+            _ctx.SaveChanges();
+            return user;
+        }
     }
 }

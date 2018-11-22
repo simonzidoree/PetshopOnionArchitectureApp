@@ -20,6 +20,11 @@ namespace Petshop.Core.ApplicationService.Services
             _repository = repository;
         }
 
+        public User Create(User t)
+        {
+            return _repository.Create(t);
+        }
+
         public bool CheckCorrectPassword(User user, LoginInput model)
         {
             using (var hmac = new HMACSHA512(user.PasswordSalt))
@@ -63,7 +68,7 @@ namespace Petshop.Core.ApplicationService.Services
                     null, // audience - not needed (ValidateAudience = false)
                     claims.ToArray(),
                     DateTime.Now, // notBefore
-                    DateTime.Now.AddDays(1))); // expires
+                    DateTime.Now.AddMinutes(5))); // expires
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }

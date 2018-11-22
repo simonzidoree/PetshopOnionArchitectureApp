@@ -5,7 +5,7 @@ using Petshop.Core.Entities;
 namespace Petshop.RESTAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class TokenController : Controller
+    public class TokenController : ControllerBase
     {
         private readonly IUserService _Service;
 

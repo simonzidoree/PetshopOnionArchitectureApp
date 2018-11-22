@@ -9,5 +9,7 @@ namespace Petshop.Core.ApplicationService
         bool CheckCorrectPassword(User user, LoginInput model);
 
         string GenerateToken(User user);
+
+        User Create(User t);
     }
 }
